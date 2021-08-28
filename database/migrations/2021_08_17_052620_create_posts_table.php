@@ -15,7 +15,10 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id');
+            $table->foreignId('user_id')
+                  ->constrained()
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
             $table->string('title');
             $table->string('slug')->unique();
             $table->text('excerpt');
@@ -28,17 +31,23 @@ class CreatePostsTable extends Migration
         Schema::create('category_post', function(Blueprint $table) {
             $table->id();
             $table->foreignId('category_id')
-                  ->constrained();
+                  ->constrained()
+                  ->onDelete('cascade');
             $table->foreignId('post_id')
-                  ->constrained();
+                  ->constrained()
+                  ->onUpdate('cascade');
         });
 
         Schema::create('post_tag', function(Blueprint $table) {
             $table->id();
             $table->foreignId('post_id')
-                  ->constrained();
+                  ->constrained()
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
             $table->foreignId('tag_id')
-                  ->constrained();
+                  ->constrained()
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
         });
     }
 

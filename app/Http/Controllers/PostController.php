@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PostRequest;
-use App\Models\Post;
+use App\Models\{Post, Tag};
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+
 
 class PostController extends Controller
 {
@@ -27,7 +29,6 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
         return view('back.posts.create');
     }
 
@@ -41,7 +42,8 @@ class PostController extends Controller
     {
         $data = array_merge(['user_id' => auth()->id()], $request->post());
 
-        Post::create($data);
+        $post = Post::create($data);
+        $this->saveCategoriesAndTags($post, $request);
         session()->flash('addPostSuccess', 'Post created successfully');
         return redirect()->route('posts.index');
     }
@@ -81,8 +83,9 @@ class PostController extends Controller
         //
         // dd($request->post());
         $post->update($request->post());
+        $this->saveCategoriesAndTags($post, $request);
         session()->flash('updatePostSuccess', 'Post updated successfully');
-        return redirect()->back();
+        return back();
 
     }
 
@@ -95,6 +98,26 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $post->delete();
-        return redirect()->back();
+        return back();
+    }
+
+    protected function saveCategoriesAndTags($post, $request)
+    {
+        // Categorie
+        $post->categories()->sync($request->category);
+
+        // Tags
+        $tags_id = [];
+        if($request->tags) {
+            
+            $tags = explode(',', $request->tags);
+            foreach ($tags as $tag) {
+                $created_tag = Tag::firstOrCreate([
+                    'tag' => trim($tag)
+                ]);
+                array_push($tags_id, $created_tag->id);
+            }
+            $post->tags()->sync($tags_id);
+        }
     }
 }
