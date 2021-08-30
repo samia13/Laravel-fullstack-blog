@@ -39,13 +39,10 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        $data = array_merge(['user_id' => auth()->id()], $request->post());
-
-        $post = Post::create($data);
-        $this->saveCategoriesAndTags($post, $request);
-        session()->flash('addPostSuccess', 'Post created successfully');
-        return redirect()->route('posts.index');
+    {       
+        $request->user()->posts()->create($request->post());
+        
+        return redirect()->route('posts.index')->with('message', 'Post created successfully');
     }
 
     /**
@@ -99,25 +96,5 @@ class PostController extends Controller
     {
         $post->delete();
         return back();
-    }
-
-    protected function saveCategoriesAndTags($post, $request)
-    {
-        // Categorie
-        $post->categories()->sync($request->category);
-
-        // Tags
-        $tags_id = [];
-        if($request->tags) {
-            
-            $tags = explode(',', $request->tags);
-            foreach ($tags as $tag) {
-                $created_tag = Tag::firstOrCreate([
-                    'tag' => trim($tag)
-                ]);
-                array_push($tags_id, $created_tag->id);
-            }
-            $post->tags()->sync($tags_id);
-        }
     }
 }
