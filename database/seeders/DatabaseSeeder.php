@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\{User, Post};
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -23,19 +24,27 @@ class DatabaseSeeder extends Seeder
         ]);
         User::factory()->count(8)->create();
 
+        // insert default user 
+        DB::table('users')->insert([
+            [
+                'name' => 'samia',
+                'email' => 'mahisamia13@gmail.com',
+                'password' => Hash::make('12345678'),
+                'role' =>   'admin',
+                'valid' => 1
+            ]
+        ]);
+
         // insert categories
         DB::table('categories')->insert([
             [
                 'title' => 'Category 1',
-                'slug' => 'category-1'
             ],
             [
                 'title' => 'Category 2',
-                'slug' => 'category-2'
             ],
             [
                 'title' => 'Category 3',
-                'slug' => 'category-3'
             ],
         ]);
 
@@ -43,27 +52,21 @@ class DatabaseSeeder extends Seeder
         DB::table('tags')->insert([
             [
                 'tag' => 'Tag 1', 
-                'slug' => 'tag-1'
             ],
             [
                 'tag' => 'Tag 2',
-                 'slug' => 'tag-2'
             ],
             [
                 'tag' => 'Tag 3',
-                 'slug' => 'tag-3'
             ],
             [
                 'tag' => 'Tag 4',
-                 'slug' => 'tag-4'
             ],
             [
                 'tag' => 'Tag 5',
-                 'slug' => 'tag-5'
             ],
             [
                 'tag' => 'Tag 6',
-                 'slug' => 'tag-6'
             ]
         ]);
 

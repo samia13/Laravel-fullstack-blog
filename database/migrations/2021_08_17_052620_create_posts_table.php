@@ -32,10 +32,12 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->foreignId('category_id')
                   ->constrained()
-                  ->onDelete('cascade');
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
             $table->foreignId('post_id')
                   ->constrained()
-                  ->onUpdate('cascade');
+                  ->onUpdate('cascade')
+                  ->onDelete('cascade');
         });
 
         Schema::create('post_tag', function(Blueprint $table) {

@@ -41,7 +41,7 @@ class PostController extends Controller
     public function store(Request $request)
     {       
         $request->user()->posts()->create($request->post());
-        
+
         return redirect()->route('posts.index')->with('message', 'Post created successfully');
     }
 
@@ -77,13 +77,8 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
-        // dd($request->post());
         $post->update($request->post());
-        $this->saveCategoriesAndTags($post, $request);
-        session()->flash('updatePostSuccess', 'Post updated successfully');
-        return back();
-
+        return back()->with('message', 'Post updated successfully');
     }
 
     /**
