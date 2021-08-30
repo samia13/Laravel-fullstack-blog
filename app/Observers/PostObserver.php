@@ -3,15 +3,14 @@
 namespace App\Observers;
 
 use App\Models\{Post, Tag};
-use Illuminate\Http\Request;
 
 class PostObserver
 {
     public $request;
 
-    function __construct(Request $request)
+    function __construct()
     {
-        $this->request = $request;
+        $this->request = request()->all();
     }
     /**
      * Handle the Post "created" event.
@@ -21,21 +20,7 @@ class PostObserver
      */
     public function created(Post $post)
     {
-        $post->categories()->sync($this->request->category);
-
-        // Tags
-        $tags_id = [];
-        if($this->request->tags) {
-            
-            $tags = explode(',', $this->request->tags);
-            foreach ($tags as $tag) {
-                $created_tag = Tag::firstOrCreate([
-                    'tag' => trim($tag)
-                ]);
-                array_push($tags_id, $created_tag->id);
-            }
-            $post->tags()->sync($tags_id);
-        }
+        $this->saveCategoryAndTag($post);
     }
 
     /**
@@ -46,7 +31,7 @@ class PostObserver
      */
     public function updated(Post $post)
     {
-        //
+        $this->saveCategoryAndTag($post);
     }
 
     /**
@@ -80,5 +65,25 @@ class PostObserver
     public function forceDeleted(Post $post)
     {
         //
+    }
+
+    function saveCategoryAndTag($post){
+
+        if($this->request['category']) {
+            $post->categories()->sync($this->request['category']);
+        }
+
+        if($this->request['tags']) {
+            $tags_id = [];
+            
+            $tags = explode(',', $this->request['tags']);
+            foreach ($tags as $tag) {
+                $created_tag = Tag::firstOrCreate([
+                    'tag' => trim($tag)
+                ]);
+                array_push($tags_id, $created_tag->id);
+            }
+            $post->tags()->sync($tags_id);
+        }
     }
 }

@@ -77,7 +77,13 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        $post->update($request->post());
+        // the update method, only fire its events when the update happens directly on the model,
+        // so we will use save directly on modal instead of mass assignment
+        $post->title    = $request->title;
+        $post->excerpt  = $request->excerpt;
+        $post->body     = $request->body;
+        $post->save();
+        
         return back()->with('message', 'Post updated successfully');
     }
 
