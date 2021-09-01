@@ -38,7 +38,8 @@
             <!-- Left navbar links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+                    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
+                            class="fas fa-bars"></i></a>
                 </li>
                 <li class="nav-item d-none d-sm-inline-block">
                     <a href="index3.html" class="nav-link">Home</a>
@@ -117,26 +118,20 @@
                                 <i class="nav-icon far fa-calendar-alt"></i>
                                 <p>
                                     Posts
-                                    {{-- <span class="badge badge-info right">2</span> --}}
                                 </p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{ route('categories.index') }}" class="nav-link">
-                                <i class="nav-icon far fa-image"></i>
-                                <p>
-                                    Categories
-                                </p>
-                            </a>
-                        </li>
-                        {{-- <li class="nav-item">
-                            <a href="pages/kanban.html" class="nav-link">
-                                <i class="nav-icon fas fa-columns"></i>
-                                <p>
-                                    Tags
-                                </p>
-                            </a>
-                        </li> --}}
+
+                        @if (auth()->user()->isAdmin())
+                            <li class="nav-item">
+                                <a href="{{ route('categories.index') }}" class="nav-link">
+                                    <i class="nav-icon far fa-image"></i>
+                                    <p>
+                                        Categories
+                                    </p>
+                                </a>
+                            </li>
+                        @endif
                     </ul>
                 </nav>
                 <!-- /.sidebar-menu -->

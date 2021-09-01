@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\PostRequest;
 use App\Models\{Post, Tag};
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 
 
 class PostController extends Controller
@@ -18,7 +17,7 @@ class PostController extends Controller
     public function index()
     {
         //
-        $posts = Post::all();
+        $posts = auth()->user()->posts;
         return view('back.posts.index', compact('posts'));
     }
 
@@ -83,7 +82,7 @@ class PostController extends Controller
         $post->excerpt  = $request->excerpt;
         $post->body     = $request->body;
         $post->save();
-        
+
         return back()->with('message', 'Post updated successfully');
     }
 

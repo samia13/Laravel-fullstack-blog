@@ -27,6 +27,6 @@ Route::get('/posts/{post}', 'PageController@showPost')->name('posts.view');
 
 // admin pages 
 Route::group(['prefix' => '/admin', 'middleware' => 'auth'], function () {
-    Route::resource('posts','PostController');
+    Route::resource('posts','PostController')->middleware('authResource:post');
     Route::resource('categories','CategoryController')->except('show');
 });
