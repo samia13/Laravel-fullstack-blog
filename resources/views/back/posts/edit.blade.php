@@ -48,6 +48,9 @@
                                 <textarea id="body" name="body" class="form-control"
                                     rows="5">{{ $post->excerpt }}</textarea>
                             </div>
+                            <div class="image-preview">
+                                <img src="{{ asset('images/' . $post->image) }}" alt="">
+                            </div>
                             <div class="form-group">
                                 <label for="image">New Image</label>
                                 <input type="file" name="image" class="form-control-file" id="image" required>
@@ -73,17 +76,20 @@
                             <div class="form-group">
                                 <label for="category">Category</label>
                                 <select id="category" name="category" class="form-control custom-select">
-                                    <option selected disabled>Select one</option>
+                                    <option disabled>Select one</option>
                                     @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->title }}</option>
+                                        <option value="{{ $category->id }}"
+                                            {{ $category->id == $post->categories->first()->id ? 'selected' : '' }}>
+                                            {{ $category->title }}
+                                        </option>
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <label for="tags">Tags</label>
                                 <input type="text" id="tags" name="tags" class="form-control"
                                     placeholder="tag 1, tag 2 ...">
-                            </div>
+                            </div> --}}
                         </div>
                         <!-- /.card-body -->
                     </div>

@@ -20,3 +20,12 @@ li.breadcrumb-item {
     list-style: none;
     padding-left: 13px;
 }
+.image-preview img {
+    width: 200px;
+    height: 164px;
+    object-fit: cover;
+    margin-bottom: 23px;
+}
+.form-check-label {
+    margin-bottom: 10px;
+}

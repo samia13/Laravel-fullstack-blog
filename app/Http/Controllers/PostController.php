@@ -89,8 +89,10 @@ class PostController extends Controller
         if($request->has('image')){
             $oldImage = $post->image;
             $this->uploadImage($request);
-            // unlink(public_path('images/'.$oldImage));
-            $post->image = $request->image;
+            if(file_exists(public_path('images/'.$oldImage))){
+                unlink(public_path('images/'.$oldImage));
+            }
+            $post->image = $request->post()['image'];
         }
         $post->title    = $request->title;
         $post->excerpt  = $request->excerpt;

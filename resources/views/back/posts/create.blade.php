@@ -27,7 +27,6 @@
                                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
                                 <label class="form-check-label" name="featured" for="exampleCheck1">Featured Post</label>
                             </div>
-                            <p class="orange font-14">only 3 featured posts are allowed </p>
                             <div class="form-group">
                                 <label for="title">Post Title </label>
                                 <input type="text" name="title" id="title" class="form-control" required>
@@ -70,11 +69,6 @@
                                         <option value="{{ $category->id }}">{{ $category->title }}</option>
                                     @endforeach
                                 </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="tags">Tags</label>
-                                <input type="text" id="tags" name="tags" class="form-control"
-                                    placeholder="tag 1, tag 2 ...">
                             </div>
                         </div>
                         <!-- /.card-body -->

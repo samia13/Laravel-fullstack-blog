@@ -2,7 +2,7 @@
 
 namespace App\Observers;
 
-use App\Models\{Post, Tag};
+use App\Models\Post;
 
 class PostObserver
 {
@@ -71,19 +71,6 @@ class PostObserver
 
         if($this->request->has('category')) {
             $post->categories()->sync($this->request->category);
-        }
-
-        if($this->request->has('tags')) {
-            $tags_id = [];
-            
-            $tags = explode(',', $this->request->tags);
-            foreach ($tags as $tag) {
-                $created_tag = Tag::firstOrCreate([
-                    'tag' => trim($tag)
-                ]);
-                array_push($tags_id, $created_tag->id);
-            }
-            $post->tags()->sync($tags_id);
         }
     }
 }
