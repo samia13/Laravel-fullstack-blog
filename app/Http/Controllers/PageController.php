@@ -23,8 +23,9 @@ class PageController extends Controller
         return view('posts.index');
     }
     
-    public function showPost(){
-        return view('posts.show');
+    public function showPost(Post $post){
+        $post = $post->load('user','categories');
+        return view('front.posts.show', compact('post'));
     }
 
     public function showCategory(Category $category){

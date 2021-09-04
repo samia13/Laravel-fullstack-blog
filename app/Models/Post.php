@@ -43,4 +43,12 @@ class Post extends Model
     public function scopeFeatured($query){
         return $query->where('featured', true);
     }
+
+    public function previousPost(){
+        return  Post::where('id', '<', $this->id)->orderBy('id','desc')->first();
+    }
+
+    public function nextPost(){
+        return Post::where('id', '>', $this->id)->orderBy('id')->first();
+    }
 }

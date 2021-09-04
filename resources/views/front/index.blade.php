@@ -67,7 +67,7 @@
                             <article class="brick entry" data-aos="fade-up">
 
                                 <div class="entry__thumb">
-                                    <a href="single-standard.html" class="thumb-link">
+                                    <a href="{{ route('posts.view', $post->id) }}" class="thumb-link">
                                         <img src="{{ asset('images/' . $post->image) }}" alt="">
                                     </a>
                                 </div> <!-- end entry__thumb -->
@@ -75,7 +75,7 @@
                                 <div class="entry__text">
                                     <div class="entry__header">
                                         <h1 class="entry__title"><a
-                                                href="https://www.dreamhost.com/r.cgi?287326">{{ $post->title }}</a></h1>
+                                                href="{{ route('posts.view', $post->id) }}">{{ $post->title }}</a></h1>
 
                                         <div class="entry__meta">
                                             <span class="byline">By:
@@ -84,8 +84,7 @@
                                                 </span>
                                             </span>
                                             <span class="cat-links">
-                                                <a
-                                                    href="https://www.dreamhost.com/r.cgi?287326">{{ $post->categories->first()->title }}</a>
+                                                <a href="#">{{ $post->categories->first()->title }}</a>
                                             </span>
                                         </div>
                                     </div>
@@ -94,7 +93,8 @@
                                             {{ $post->excerpt }}
                                         </p>
                                     </div>
-                                    <a class="entry__more-link" href="{{ route('posts.view', $post->id) }}">Learn More</a>
+                                    <a class="entry__more-link" href="{{ route('posts.view', $post->id) }}">Learn
+                                        More</a>
                                 </div> <!-- end entry__text -->
 
                             </article> <!-- end article -->

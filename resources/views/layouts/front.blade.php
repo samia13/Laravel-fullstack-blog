@@ -18,6 +18,7 @@
     ================================================== -->
     <link rel="stylesheet" href="{{ asset('front/css/vendor.css') }}">
     <link rel="stylesheet" href="{{ asset('front/css/styles.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 
     <!-- script
     ================================================== -->
@@ -68,9 +69,6 @@
                                 <li><a href="{{ route('categories.view', $cat->id) }}">{{ $cat->title }}</a></li>
                             @endforeach
                         </ul>
-                    </li>
-                    <li>
-                        <a href="#0" title="">Blog</a>
                     </li>
                     @guest
                         <li>
