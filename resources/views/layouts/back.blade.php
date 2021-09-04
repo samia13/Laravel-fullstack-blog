@@ -115,7 +115,7 @@
                         <li class="nav-header">Blog</li>
                         <li class="nav-item">
                             <a href="{{ route('posts.index') }}" class="nav-link">
-                                <i class="nav-icon far fa-calendar-alt"></i>
+                                <i class="nav-icon fa fa-file-alt"></i>
                                 <p>
                                     Posts
                                 </p>
@@ -125,7 +125,7 @@
                         @if (auth()->user()->isAdmin())
                             <li class="nav-item">
                                 <a href="{{ route('categories.index') }}" class="nav-link">
-                                    <i class="nav-icon far fa-image"></i>
+                                    <i class="nav-icon fa fa-tags"></i>
                                     <p>
                                         Categories
                                     </p>
