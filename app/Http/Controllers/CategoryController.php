@@ -14,8 +14,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $categories = Category::all();
-        return view('back.categories.index', compact('categories'));
+        return view('back.categories.index');
     }
 
     /**
@@ -36,7 +35,8 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-
+        Category::create($request->post());
+        return redirect()->route('categories.index')->with('message', 'Category created successfully');
     }
 
     /**
@@ -72,5 +72,6 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
+        return back();
     }
 }

@@ -16,7 +16,7 @@ class Post extends Model
         'slug', 
         'excerpt', 
         'body',  
-        'active', 
+        'featured', 
         'image', 
     ];
 
@@ -38,5 +38,9 @@ class Post extends Model
     public function tags()
     {
         return $this->belongsToMany(Tag::class);
+    }
+
+    public function scopeFeatured($query){
+        return $query->where('featured', true);
     }
 }

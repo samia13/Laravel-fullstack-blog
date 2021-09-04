@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\PostRequest;
-use App\Models\{Post, Tag};
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 
 class PostController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('authResource:post')->except('index', 'create', 'store');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -39,6 +44,10 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {       
+        // dd($request);
+        if($request->has('image')){
+            $this->uploadImage($request);
+        }
         $request->user()->posts()->create($request->post());
 
         return redirect()->route('posts.index')->with('message', 'Post created successfully');
@@ -63,7 +72,6 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
         return view('back.posts.edit', compact('post'));
     }
 
@@ -78,6 +86,12 @@ class PostController extends Controller
     {
         // the update method, only fire its events when the update happens directly on the model,
         // so we will use save directly on modal instead of mass assignment
+        if($request->has('image')){
+            $oldImage = $post->image;
+            $this->uploadImage($request);
+            // unlink(public_path('images/'.$oldImage));
+            $post->image = $request->image;
+        }
         $post->title    = $request->title;
         $post->excerpt  = $request->excerpt;
         $post->body     = $request->body;
@@ -96,5 +110,14 @@ class PostController extends Controller
     {
         $post->delete();
         return back();
+    }
+
+    public function uploadImage($request){
+        $image = $request->file('image');
+        $imageName = time().$image->getClientOriginalName();
+        // add the new file 
+        $image->move(public_path('images'),$imageName);
+        $request->merge(['image' => $imageName]);
+        // dd($request);
     }
 }

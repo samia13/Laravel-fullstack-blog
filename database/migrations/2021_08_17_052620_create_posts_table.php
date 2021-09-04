@@ -23,8 +23,8 @@ class CreatePostsTable extends Migration
             $table->string('slug')->unique();
             $table->text('excerpt');
             $table->text('body');
-            $table->boolean('active')->default(false);
-            $table->string('image')->nullable();
+            $table->boolean('featured')->default(false);
+            $table->string('image');
             $table->timestamps();
         });
 

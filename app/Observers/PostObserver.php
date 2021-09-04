@@ -10,7 +10,7 @@ class PostObserver
 
     function __construct()
     {
-        $this->request = request()->all();
+        $this->request = request();
     }
     /**
      * Handle the Post "created" event.
@@ -69,14 +69,14 @@ class PostObserver
 
     function saveCategoryAndTag($post){
 
-        if($this->request['category']) {
-            $post->categories()->sync($this->request['category']);
+        if($this->request->has('category')) {
+            $post->categories()->sync($this->request->category);
         }
 
-        if($this->request['tags']) {
+        if($this->request->has('tags')) {
             $tags_id = [];
             
-            $tags = explode(',', $this->request['tags']);
+            $tags = explode(',', $this->request->tags);
             foreach ($tags as $tag) {
                 $created_tag = Tag::firstOrCreate([
                     'tag' => trim($tag)

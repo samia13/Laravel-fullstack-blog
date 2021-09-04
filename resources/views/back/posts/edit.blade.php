@@ -23,7 +23,7 @@
 @section('content')
     <!-- Main content -->
     <section class="content">
-        <form method="POST" action="{{ route('posts.update', $post->id) }}">
+        <form method="POST" action="{{ route('posts.update', $post->id) }}" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="row">
@@ -47,6 +47,10 @@
                                 <label for="body">Post Description</label>
                                 <textarea id="body" name="body" class="form-control"
                                     rows="5">{{ $post->excerpt }}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="image">New Image</label>
+                                <input type="file" name="image" class="form-control-file" id="image" required>
                             </div>
 
                         </div>

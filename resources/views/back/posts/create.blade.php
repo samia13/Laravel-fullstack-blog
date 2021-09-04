@@ -14,7 +14,7 @@
 @section('content')
     <!-- Main content -->
     <section class="content">
-        <form method="POST" action="{{ route('posts.store') }}">
+        <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
             @csrf
             <div class="row">
                 <div class="col-md-6">
@@ -23,6 +23,11 @@
                             <h3 class="card-title">General</h3>
                         </div>
                         <div class="card-body">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                <label class="form-check-label" name="featured" for="exampleCheck1">Featured Post</label>
+                            </div>
+                            <p class="orange font-14">only 3 featured posts are allowed </p>
                             <div class="form-group">
                                 <label for="title">Post Title </label>
                                 <input type="text" name="title" id="title" class="form-control" required>
@@ -34,6 +39,11 @@
                             <div class="form-group">
                                 <label for="description">Post Description</label>
                                 <textarea id="description" name="body" class="form-control" rows="4" required></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="image">Post Image</label>
+                                <input type="file" name="image" class="form-control-file" id="image" required>
                             </div>
                         </div>
                         <!-- /.card-body -->

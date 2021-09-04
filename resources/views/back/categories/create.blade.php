@@ -14,7 +14,7 @@
 @section('content')
     <!-- Main content -->
     <section class="content">
-        <form method="POST" action="{{ route('posts.store') }}">
+        <form method="POST" action="{{ route('categories.store') }}">
             @csrf
             <div class="row">
                 <div class="col-md-12">
@@ -24,16 +24,8 @@
                         </div>
                         <div class="card-body">
                             <div class="form-group">
-                                <label for="title">Post Title </label>
+                                <label for="title">Category Name </label>
                                 <input type="text" name="title" id="title" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="excerpt">Post Excerpt</label>
-                                <textarea id="excerpt" name="excerpt" class="form-control" rows="4" required></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label for="description">Post Description</label>
-                                <textarea id="description" name="body" class="form-control" rows="4" required></textarea>
                             </div>
                         </div>
                         <!-- /.card-body -->

@@ -24,9 +24,10 @@ require __DIR__.'/auth.php';
 Route::get('/', 'PageController@index')->name('home');
 Route::get('/posts', 'PageController@posts')->name('posts');
 Route::get('/posts/{post}', 'PageController@showPost')->name('posts.view');
+Route::get('/category/{category}', 'PageController@showCategory')->name('categories.view');
 
 // admin pages 
 Route::group(['prefix' => '/admin', 'middleware' => 'auth'], function () {
-    Route::resource('posts','PostController')->middleware('authResource:post');
+    Route::resource('posts','PostController');
     Route::resource('categories','CategoryController')->except('show');
 });

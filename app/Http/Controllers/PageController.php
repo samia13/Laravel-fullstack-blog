@@ -2,12 +2,21 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Post;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
     public function index(){
-        return view('front.pages.index');
+        $posts = Post::where('featured', false)
+                    ->with('user', 'categories')
+                    ->get();
+        $featured = Post::featured()->take(3)->get();
+        return view('front.index', [
+            'posts' => $posts,
+            'featured' => $featured
+        ]);
     }
 
     public function posts(){
@@ -16,5 +25,10 @@ class PageController extends Controller
     
     public function showPost(){
         return view('posts.show');
+    }
+
+    public function showCategory(Category $category){
+        $posts = $category->posts()->get();
+        return view('front.categories.show', compact('category', 'posts'));
     }
 }
