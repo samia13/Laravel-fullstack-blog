@@ -1,4 +1,11 @@
 # Laravel 8 Blog project
+## instructions
+    * run npm install 
+    * run composer install
+    * copy .env.example into .env file
+    * create a database according to its name in .env file (in this demo its called laravel)
+    * sometimes observer is not working, so make sure you comment code inside app/providers/AppServiceProvider boot() function before you run any php artisan command 
+    * run php artisan migrate --seed 
 ## template
     * AdminLTE3 | Dashboard
     * Calvin 101
