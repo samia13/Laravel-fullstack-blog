@@ -1,6 +1,5 @@
 @extends('layouts.innerFront')
 @section('content')
-
     <section class="s-content">
 
         <div class="row">

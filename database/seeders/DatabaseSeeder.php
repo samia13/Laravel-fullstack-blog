@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\{User, Post};
+use App\Models\{Category, User, Post};
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -35,19 +35,6 @@ class DatabaseSeeder extends Seeder
             ]
         ]);
 
-        // insert categories
-        DB::table('categories')->insert([
-            [
-                'title' => 'Category 1',
-            ],
-            [
-                'title' => 'Category 2',
-            ],
-            [
-                'title' => 'Category 3',
-            ],
-        ]);
-
         // insert tags 
         DB::table('tags')->insert([
             [
@@ -71,21 +58,21 @@ class DatabaseSeeder extends Seeder
         ]);
 
         // seed some posts 
-        foreach (range(1, 3) as $i) {
-            Post::factory()->create([
+        foreach (range(1, 8) as $i) {
+            $post = Post::factory()->create([
                 'title' => 'Post ' . $i,
                 'slug' => 'post-' . $i,
-                'user_id' => 3,
+                'user_id' => 14,
                 'image' => 'img0' . $i . '.jpg',
+                'featured' => $i<4 ? true : false ,
             ]);
-        }
-        foreach (range(4, 10) as $i) {
-            Post::factory()->create([
-                'title' => 'Post ' . $i,
-                'slug' => 'post-' . $i,
-                'user_id' => 4,
-                'image' => 'img0' . $i . '.jpg',
+            $category = Category::factory()->create();
+
+            DB::table('category_post')->insert([
+                'post_id' => $post->id,
+                'category_id' => $category->id
             ]);
+
         }
     }
 

@@ -1,6 +1,5 @@
     @extends('layouts.front')
     @section('content')
-
         <section id="hero" class="s-hero">
 
             <div class="s-hero__slider">
@@ -98,7 +97,6 @@
                                 </div> <!-- end entry__text -->
 
                             </article> <!-- end article -->
-
                         @endforeach
 
                     </div> <!-- end brick-wrapper -->

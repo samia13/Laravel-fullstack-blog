@@ -13,6 +13,7 @@ class PageController extends Controller
                     ->with('user', 'categories')
                     ->get();
         $featured = Post::featured()->take(3)->get();
+        // dd($featured);
         return view('front.index', [
             'posts' => $posts,
             'featured' => $featured
