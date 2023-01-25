@@ -60,8 +60,6 @@ class DatabaseSeeder extends Seeder
         // seed some posts 
         foreach (range(1, 8) as $i) {
             $post = Post::factory()->create([
-                'title' => 'Post ' . $i,
-                'slug' => 'post-' . $i,
                 'user_id' => 14,
                 'image' => 'img0' . $i . '.jpg',
                 'featured' => $i<4 ? true : false ,

@@ -22,6 +22,7 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
+            'title' => $this->faker->words(4, true),
             'excerpt' => $this->faker->paragraph($nbSentences = 5, $variableNbSentences = true),
             'body' => $this->faker->paragraphs($nb = 8, $asText = true),
             'featured' => false,
