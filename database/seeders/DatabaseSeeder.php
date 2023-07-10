@@ -16,19 +16,15 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        User::factory()->create([
-            'role' => 'admin',
-        ]);
-        User::factory()->count(4)->create([
-            'role' => 'author',
-        ]);
+        User::factory()->create(['role' => 'admin',]);
+        User::factory()->count(4)->create(['role' => 'author',]);
         User::factory()->count(8)->create();
 
         // insert default user 
         DB::table('users')->insert([
             [
-                'name' => 'samia',
-                'email' => 'mahisamia13@gmail.com',
+                'name' => 'Saka',
+                'email' => 'chansakleng007@gmail.com',
                 'password' => Hash::make('12345678'),
                 'role' =>   'admin',
                 'valid' => 1
