@@ -45,7 +45,7 @@
                         </svg>
                     </button>
                 </div> <!-- end s-hero__arrows -->
-
+            </div>
         </section> <!-- end s-hero -->
 
         <section class="s-content s-content--no-top-padding">

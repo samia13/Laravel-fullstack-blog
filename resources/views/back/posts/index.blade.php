@@ -37,30 +37,38 @@
                 <table class="table table-striped projects">
                     <thead>
                         <tr>
-                            <th style="width: 1%">
+                            <th style="width: 3%">
                                 #
                             </th>
-                            <th style="width: 60%">
+                            <th style="width: 30%">
                                 Post title
                             </th>
-                            <th style="width: 39%">
+                            <th style="width: 25%">
+                                Category
                             </th>
+                            <th style="width: 25%">
+                                Author
+                            </th>
+                            <th style="width: 17%"></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($posts as $post)
                             <tr>
                                 <td>
-                                    #
+                                    {{ $loop->iteration }}
                                 </td>
                                 <td>
-                                    <a>
+                                    <div>
                                         {{ $post->title }}
-                                    </a>
-                                    <br />
-                                    <small>
-                                        Created {{ $post->created_at }}
-                                    </small>
+                                    </div>
+                                    <small>Created {{ date("d M Y - h:m a", strtotime($post->created_at)) }}</small>
+                                </td>
+                                <td>
+                                    {{ $post->categories->first()->title }}
+                                </td>
+                                <td>
+                                    {{ $post->user->name }}
                                 </td>
                                 <td class="project-actions text-right">
                                     <a class="btn btn-primary btn-sm" href="{{ route('posts.view', $post->id) }}">

@@ -6,7 +6,7 @@
     <!--- basic page needs
         ================================================== -->
     <meta charset="utf-8">
-    <title>Calvin</title>
+    <title>Saka</title>
     <meta name="description" content="">
     <meta name="author" content="">
 
@@ -71,7 +71,7 @@
                     </li>
                     @guest
                         <li>
-                            <a href="{{ route('login') }}" title="">Sign In</a>
+                            <a href="{{ route('login') }}" title="">Admin</a>
                         </li>
                     @endguest
                     @auth

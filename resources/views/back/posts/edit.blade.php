@@ -41,20 +41,20 @@
                             <div class="form-group">
                                 <label for="resume">Post Excerpt</label>
                                 <textarea id="resume" name="excerpt" class="form-control"
-                                    rows="3">{{ $post->excerpt }}</textarea>
+                                    rows="4">{{ $post->excerpt }}</textarea>
                             </div>
                             <div class="form-group">
                                 <label for="body">Post Description</label>
                                 <textarea id="body" name="body" class="form-control"
-                                    rows="5">{{ $post->excerpt }}</textarea>
+                                    rows="12">{{ $post->body }}</textarea>
                             </div>
-                            <div class="image-preview">
-                                <img src="{{ asset('images/' . $post->image) }}" alt="">
-                            </div>
-                            <div class="form-group">
-                                <label for="image">New Image</label>
-                                <input type="file" name="image" class="form-control-file" id="image" required>
-                            </div>
+{{--                            <div class="image-preview">--}}
+{{--                                <img src="{{ asset('images/'.$post->image) }}" alt="">--}}
+{{--                            </div>--}}
+{{--                            <div class="form-group">--}}
+{{--                                <label for="image">New Image</label>--}}
+{{--                                <input type="file" name="image" class="form-control-file" id="image">--}}
+{{--                            </div>--}}
 
                         </div>
                         <!-- /.card-body -->
@@ -85,6 +85,13 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="image-preview">
+                                <img src="{{ asset('images/'.$post->image) }}" alt="">
+                            </div>
+                            <div class="form-group">
+                                                                <label for="image">New Image</label>
+                                                                <input type="file" name="image" class="form-control-file" id="image">
+                                                            </div>
                             {{-- <div class="form-group">
                                 <label for="tags">Tags</label>
                                 <input type="text" id="tags" name="tags" class="form-control"
