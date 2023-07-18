@@ -20,7 +20,7 @@ class DatabaseSeeder extends Seeder
         User::factory()->count(4)->create(['role' => 'author',]);
         User::factory()->count(8)->create();
 
-        // insert default user 
+        // insert default user
         DB::table('users')->insert([
             [
                 'name' => 'Saka',
@@ -31,34 +31,22 @@ class DatabaseSeeder extends Seeder
             ]
         ]);
 
-        // insert tags 
+        // insert tags
         DB::table('tags')->insert([
-            [
-                'tag' => 'Tag 1', 
-            ],
-            [
-                'tag' => 'Tag 2',
-            ],
-            [
-                'tag' => 'Tag 3',
-            ],
-            [
-                'tag' => 'Tag 4',
-            ],
-            [
-                'tag' => 'Tag 5',
-            ],
-            [
-                'tag' => 'Tag 6',
-            ]
+            ['tag' => 'Tag 1',],
+            ['tag' => 'Tag 2',],
+            ['tag' => 'Tag 3',],
+            ['tag' => 'Tag 4',],
+            ['tag' => 'Tag 5',],
+            ['tag' => 'Tag 6',]
         ]);
 
-        // seed some posts 
+        // seed some posts
         foreach (range(1, 8) as $i) {
             $post = Post::factory()->create([
                 'user_id' => 14,
                 'image' => 'img0' . $i . '.jpg',
-                'featured' => $i<4 ? true : false ,
+                'featured' => $i<4,
             ]);
             $category = Category::factory()->create();
 

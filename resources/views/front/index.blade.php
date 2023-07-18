@@ -22,9 +22,7 @@
                                     </span>
                                 </div>
                                 <h1 class="s-hero__slide-text">
-                                    <a href="#0">
-                                        {{ $post->title }}
-                                    </a>
+                                    <a href="#0">{{ $post->title }}</a>
                                 </h1>
                             </div>
                         </div>
@@ -62,12 +60,13 @@
                             <span></span>
                             <span></span>
                         </div>
+
                         @foreach ($posts as $post)
                             <article class="brick entry" data-aos="fade-up">
 
                                 <div class="entry__thumb">
                                     <a href="{{ route('posts.view', $post->id) }}" class="thumb-link">
-                                        <img src="{{ asset('images/' . $post->image) }}" alt="">
+                                        <img src="{{ asset('images/'.$post->image) }}" alt="">
                                     </a>
                                 </div> <!-- end entry__thumb -->
 
@@ -88,12 +87,9 @@
                                         </div>
                                     </div>
                                     <div class="entry__excerpt">
-                                        <p>
-                                            {{ $post->excerpt }}
-                                        </p>
+                                        <p>{{ $post->excerpt }}</p>
                                     </div>
-                                    <a class="entry__more-link" href="{{ route('posts.view', $post->id) }}">Learn
-                                        More</a>
+                                    <a class="entry__more-link" href="{{ route('posts.view', $post->id) }}">Learn More</a>
                                 </div> <!-- end entry__text -->
 
                             </article> <!-- end article -->

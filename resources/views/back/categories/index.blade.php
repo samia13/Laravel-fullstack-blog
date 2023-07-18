@@ -13,13 +13,13 @@
     <div class="col-sm-6">
         {{-- <h1 class="m-0">Dashboard</h1> --}}
         <a class="btn btn-success" href="{{ route('categories.create') }}">
-            Create new Category
+            Create new category
         </a>
     </div><!-- /.col -->
     <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active">categories</li>
+            <li class="breadcrumb-item"><a href="{{ route('admin') }}">Admin</a></li>
+            <li class="breadcrumb-item active">Categories</li>
         </ol>
     </div><!-- /.col -->
 
@@ -37,13 +37,16 @@
                 <table class="table table-striped projects">
                     <thead>
                         <tr>
-                            <th style="width: 1%">
+                            <th style="width: 5%">
                                 #
                             </th>
-                            <th style="width: 60%">
+                            <th style="width: 50%">
                                 Category title
                             </th>
-                            <th style="width: 39%">
+                            <th style="width: 20%">
+                                Post count
+                            </th>
+                            <th style="width: 25%">
                             </th>
                         </tr>
                     </thead>
@@ -51,12 +54,13 @@
                         @foreach ($categories as $category)
                             <tr>
                                 <td>
-                                    #
+                                    {{ $loop->iteration }}
                                 </td>
                                 <td>
-                                    <a>
-                                        {{ $category->title }}
-                                    </a>
+                                    <a>{{ $category->title }}</a>
+                                </td>
+                                <td>
+                                    <a>{{ $category->posts->count() }}</a>
                                 </td>
                                 <td class="project-actions text-right">
                                     <a class="btn btn-info btn-sm" href="{{ route('categories.edit', $category->id) }}">
