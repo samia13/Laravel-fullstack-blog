@@ -17,7 +17,7 @@ class UsersController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->get('search');
-        $perPage = 15;
+        $perPage = 25;
 
         if (!empty($keyword)) {
             $users = User::where('name', 'LIKE', "%$keyword%")->orWhere('email', 'LIKE', "%$keyword%")
@@ -82,7 +82,6 @@ class UsersController extends Controller
     public function show($id)
     {
         $user = User::findOrFail($id);
-
         return view('admin.users.show', compact('user'));
     }
 

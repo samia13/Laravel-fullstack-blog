@@ -56,14 +56,14 @@
                                 <td><a>{{ date("d M Y - h:m a", strtotime($user->created_at)) }}</a></td>
                                 <td class="project-actions text-right">
                                     <a class="btn btn-info btn-sm" href="{{ route('authors.edit', $user->id) }}">
-                                        <i class="fas fa-pencil-alt"></i>Edit
+                                        <i class="fas fa-pencil-alt"></i> Edit
                                     </a>
                                     <form class="deletion-form" action="{{ route('authors.destroy', $user->id) }}"
                                         method="post">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm show-alert">
-                                            <i class="fas fa-trash"></i>Delete
+                                            <i class="fas fa-trash"></i> Delete
                                         </button>
                                     </form>
                                 </td>

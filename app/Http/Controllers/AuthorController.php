@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -26,6 +27,7 @@ class AuthorController extends Controller
      */
     public function create()
     {
+        return view('comingsoon');
         return view('back.author.create');
     }
 
@@ -47,9 +49,11 @@ class AuthorController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit($id)
     {
-        return view('back.author.edit', compact('user'));
+        $user = User::findOrFail($id);
+        $roles = Role::select('id', 'name', 'label')->get();
+        return view('back.author.edit', compact('user', 'roles'));
     }
 
     /**

@@ -37,7 +37,21 @@
                             <div class="form-group">
                                 <label for="title">Author Name</label>
                                 <input type="text" name="title" id="title" class="form-control"
-                                    value="{{ $user->name }}">
+                                       value="{{ $user->name }}">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="text" name="email" id="email" class="form-control"
+                                       value="{{ $user->email }}"/>
+                            </div>
+                            <div class="form-group">
+                                <label for="role">Role</label>
+                                <select id="role" name="role" class="form-control custom-select">
+                                    <option selected disabled>{{ $user->role }}</option>
+                                    @foreach ($roles as $role)
+                                        <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <!-- /.card-body -->
