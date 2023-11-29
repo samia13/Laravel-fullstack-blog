@@ -37,11 +37,14 @@
                                 </div>
                             </div>
                             <div class="meta-bottom">
-                                <div class="entry-tags meta-blk">
-                                    <span class="tagtext">Category</span>
-                                    <a
-                                        href="{{ route('categories.view', $post->categories->first()->id) }}">{{ $post->categories->first()->title }}</a>
-                                </div>
+                                @if ($post->categories->first())
+                                    <div class="entry-tags meta-blk">
+                                        <span class="tagtext">Category</span>
+                                        <a href="{{ route('categories.view', $post->categories->first()->id) }}">
+                                            {{ $post->categories->first()->title }}
+                                        </a>
+                                    </div>
+                                @endif
 
                             </div>
 
