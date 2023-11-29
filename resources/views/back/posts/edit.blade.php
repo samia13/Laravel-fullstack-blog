@@ -51,7 +51,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="image">New Image</label>
-                                <input type="file" name="image" class="form-control-file" id="image" required>
+                                <input type="file" name="image" class="form-control-file" id="image">
                             </div>
 
                         </div>
@@ -77,7 +77,7 @@
                                     <option disabled>Select one</option>
                                     @foreach ($categories as $category)
                                         <option value="{{ $category->id }}"
-                                            {{ $category->id == $post->categories->first()->id ? 'selected' : '' }}>
+                                            {{ $post->categories->first() && $category->id == $post->categories->first()->id ? 'selected' : '' }}>
                                             {{ $category->title }}
                                         </option>
                                     @endforeach
