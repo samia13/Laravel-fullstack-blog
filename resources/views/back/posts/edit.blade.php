@@ -40,13 +40,11 @@
                             </div>
                             <div class="form-group">
                                 <label for="resume">Post Excerpt</label>
-                                <textarea id="resume" name="excerpt" class="form-control"
-                                    rows="3">{{ $post->excerpt }}</textarea>
+                                <textarea id="resume" name="excerpt" class="form-control" rows="3">{{ $post->excerpt }}</textarea>
                             </div>
                             <div class="form-group">
                                 <label for="body">Post Description</label>
-                                <textarea id="body" name="body" class="form-control"
-                                    rows="5">{{ $post->excerpt }}</textarea>
+                                <textarea id="body" name="body" class="form-control" rows="5">{{ $post->excerpt }}</textarea>
                             </div>
                             <div class="image-preview">
                                 <img src="{{ asset('images/' . $post->image) }}" alt="">
