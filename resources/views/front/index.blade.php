@@ -83,7 +83,7 @@
                                                 </span>
                                             </span>
                                             <span class="cat-links">
-                                                <a href="#">{{ $post->categories->first()->title }}</a>
+                                                <a href="#">{{ optional($post->categories->first())->title }}</a>
                                             </span>
                                         </div>
                                     </div>
