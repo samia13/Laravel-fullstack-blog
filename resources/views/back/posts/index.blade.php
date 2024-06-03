@@ -13,17 +13,18 @@
     <div class="col-sm-6">
         {{-- <h1 class="m-0">Dashboard</h1> --}}
         <a class="btn btn-success" href="{{ route('posts.create') }}">
-            Create new Post
+            Create new post
         </a>
     </div><!-- /.col -->
     <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('admin') }}">Admin</a></li>
             <li class="breadcrumb-item active">Posts</li>
         </ol>
     </div><!-- /.col -->
 
 @endsection
+
 @section('content')
     <!-- Main content -->
     <section class="content">
@@ -37,41 +38,31 @@
                 <table class="table table-striped projects">
                     <thead>
                         <tr>
-                            <th style="width: 1%">
-                                #
-                            </th>
-                            <th style="width: 60%">
-                                Post title
-                            </th>
-                            <th style="width: 39%">
-                            </th>
+                            <th style="width: 5%">#</th>
+                            <th style="width: 30%">Post title</th>
+                            <th style="width: 20%">Category</th>
+                            <th style="width: 10%">Author</th>
+                            <th style="width: 15%">Slug</th>
+                            <th style="width: 10%"></th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($posts as $post)
                             <tr>
+                                <td>{{ $loop->iteration }}</td>
                                 <td>
-                                    #
+                                    <div>{{ $post->title }}</div>
+                                    <small>Created {{ date("d M Y - h:m a", strtotime($post->created_at)) }}</small>
                                 </td>
-                                <td>
-                                    <a>
-                                        {{ $post->title }}
-                                    </a>
-                                    <br />
-                                    <small>
-                                        Created {{ $post->created_at }}
-                                    </small>
-                                </td>
+                                <td>{{ $post->categories->first()->title }}</td>
+                                <td>{{ $post->user->name }}</td>
+                                <td>{{ $post->slug }}</td>
                                 <td class="project-actions text-right">
                                     <a class="btn btn-primary btn-sm" href="{{ route('posts.view', $post->id) }}">
-                                        <i class="fas fa-folder">
-                                        </i>
-                                        View
+                                        <i class="fas fa-folder"></i>View
                                     </a>
                                     <a class="btn btn-info btn-sm" href="{{ route('posts.edit', $post->id) }}">
-                                        <i class="fas fa-pencil-alt">
-                                        </i>
-                                        Edit
+                                        <i class="fas fa-pencil-alt"></i>Edit
                                     </a>
                                     <form id="delete-post{{ $post->id }}" class="deletion-form"
                                         action="{{ route('posts.destroy', $post->id) }}" method="post">
@@ -79,9 +70,7 @@
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger btn-sm show-alert"
                                             data-id="{{ $post->id }}">
-                                            <i class="fas fa-trash">
-                                            </i>
-                                            Delete
+                                            <i class="fas fa-trash"></i>Delete
                                         </button>
                                     </form>
                                 </td>

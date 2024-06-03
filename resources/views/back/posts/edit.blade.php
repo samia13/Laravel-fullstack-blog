@@ -15,11 +15,12 @@
     </div><!-- /.col -->
     <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('admin') }}">Admin</a></li>
             <li class="breadcrumb-item active">Posts Edit</li>
         </ol>
     </div><!-- /.col -->
 @endsection
+
 @section('content')
     <!-- Main content -->
     <section class="content">
@@ -40,6 +41,13 @@
                             </div>
                             <div class="form-group">
                                 <label for="resume">Post Excerpt</label>
+                                <textarea id="resume" name="excerpt" class="form-control"
+                                    rows="4">{{ $post->excerpt }}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="body">Post Description</label>
+                                <textarea id="body" name="body" class="form-control"
+                                    rows="12">{{ $post->body }}</textarea>
                                 <textarea id="resume" name="excerpt" class="form-control" rows="3">{{ $post->excerpt }}</textarea>
                             </div>
                             <div class="form-group">
@@ -83,6 +91,13 @@
                                     @endforeach
                                 </select>
                             </div>
+                            <div class="image-preview">
+                                <img src="{{ asset('images/'.$post->image) }}" alt="">
+                            </div>
+                            <div class="form-group">
+                                                                <label for="image">New Image</label>
+                                                                <input type="file" name="image" class="form-control-file" id="image">
+                                                            </div>
                             {{-- <div class="form-group">
                                 <label for="tags">Tags</label>
                                 <input type="text" id="tags" name="tags" class="form-control"

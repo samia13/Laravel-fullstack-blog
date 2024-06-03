@@ -9,7 +9,7 @@
 
                     <div class="s-content__media">
                         <div class="s-content__post-thumb text-center">
-                            <img src="{{ asset('images/' . $post->image) }}" alt="">
+                            <img src="{{ asset('images/'.$post->image) }}" alt="">
                         </div>
                     </div> <!-- end s-content__media -->
 
@@ -22,9 +22,9 @@
                         <div class="s-content__entry-content">
 
                             <p class="lead">
-                                {{ $post->body }}
+                                {!! nl2br(e(html_entity_decode($post->body))) !!}
+{{--                                {{ $post->body }}--}}
                             </p>
-
 
                         </div> <!-- end s-entry__entry-content -->
 
@@ -33,20 +33,17 @@
                             <div class="entry-author meta-blk">
                                 <div class="byline">
                                     <span class="bytext">Posted By</span>
-                                    <a href="#0">{{ $post->user->name }}</a>
+                                    <a href="#0">{{ $post->user->name }}</a><br/>
+                                    <span>{{ date("d M Y", strtotime($post->created_at)) }}</span>
                                 </div>
                             </div>
-                            <div class="meta-bottom">
-                                @if ($post->categories->first())
-                                    <div class="entry-tags meta-blk">
-                                        <span class="tagtext">Category</span>
-                                        <a href="{{ route('categories.view', $post->categories->first()->id) }}">
-                                            {{ $post->categories->first()->title }}
-                                        </a>
-                                    </div>
-                                @endif
-
-                            </div>
+                            <div class="meta-bottom m-3">
+                                <div class="entry-tags meta-blk">
+                                    <span class="tagtext">Category</span>
+                                    <a
+                                        href="{{ route('categories.view', $post->categories->first()->id) }}">{{ $post->categories->first()->title }}</a>
+                                </div>
+      
 
                         </div> <!-- s-content__entry-meta -->
 

@@ -5,7 +5,7 @@
     </div><!-- /.col -->
     <div class="col-sm-6">
         <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('admin') }}">Admin</a></li>
             <li class="breadcrumb-item active">Post Add</li>
         </ol>
     </div><!-- /.col -->
@@ -37,13 +37,13 @@
                             </div>
                             <div class="form-group">
                                 <label for="description">Post Description</label>
-                                <textarea id="description" name="body" class="form-control" rows="4" required></textarea>
+                                <textarea id="description" name="body" class="form-control" rows="12" required></textarea>
                             </div>
 
-                            <div class="form-group">
-                                <label for="image">Post Image</label>
-                                <input type="file" name="image" class="form-control-file" id="image" required>
-                            </div>
+{{--                            <div class="form-group">--}}
+{{--                                <label for="image">Post Image</label>--}}
+{{--                                <input type="file" name="image" class="form-control-file" id="image" required>--}}
+{{--                            </div>--}}
                         </div>
                         <!-- /.card-body -->
                     </div>
@@ -69,6 +69,11 @@
                                         <option value="{{ $category->id }}">{{ $category->title }}</option>
                                     @endforeach
                                 </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="image">Post Image</label>
+                                <input type="file" name="image" class="form-control-file" id="image">
                             </div>
                         </div>
                         <!-- /.card-body -->
