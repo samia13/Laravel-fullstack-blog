@@ -30,7 +30,6 @@
                     </div> <!-- end s-hero__slide -->
                 @endforeach
 
-
                 <div class="nav-arrows s-hero__nav-arrows">
                     <button class="s-hero__arrow-prev">
                         <svg viewBox="0 0 15 15" xmlns="http://www.w3.org/2000/svg" width="15" height="15">
@@ -44,6 +43,8 @@
                     </button>
                 </div> <!-- end s-hero__arrows -->
             </div>
+            </div>
+
         </section> <!-- end s-hero -->
 
         <section class="s-content s-content--no-top-padding">
@@ -82,7 +83,7 @@
                                                 </span>
                                             </span>
                                             <span class="cat-links">
-                                                <a href="#">{{ $post->categories->first()->title }}</a>
+                                                <a href="#">{{ optional($post->categories->first())->title }}</a>
                                             </span>
                                         </div>
                                     </div>

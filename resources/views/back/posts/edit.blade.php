@@ -48,14 +48,19 @@
                                 <label for="body">Post Description</label>
                                 <textarea id="body" name="body" class="form-control"
                                     rows="12">{{ $post->body }}</textarea>
+                                <textarea id="resume" name="excerpt" class="form-control" rows="3">{{ $post->excerpt }}</textarea>
                             </div>
-{{--                            <div class="image-preview">--}}
-{{--                                <img src="{{ asset('images/'.$post->image) }}" alt="">--}}
-{{--                            </div>--}}
-{{--                            <div class="form-group">--}}
-{{--                                <label for="image">New Image</label>--}}
-{{--                                <input type="file" name="image" class="form-control-file" id="image">--}}
-{{--                            </div>--}}
+                            <div class="form-group">
+                                <label for="body">Post Description</label>
+                                <textarea id="body" name="body" class="form-control" rows="5">{{ $post->excerpt }}</textarea>
+                            </div>
+                            <div class="image-preview">
+                                <img src="{{ asset('images/' . $post->image) }}" alt="">
+                            </div>
+                            <div class="form-group">
+                                <label for="image">New Image</label>
+                                <input type="file" name="image" class="form-control-file" id="image">
+                            </div>
 
                         </div>
                         <!-- /.card-body -->
@@ -80,7 +85,7 @@
                                     <option disabled>Select one</option>
                                     @foreach ($categories as $category)
                                         <option value="{{ $category->id }}"
-                                            {{ $category->id == $post->categories->first()->id ? 'selected' : '' }}>
+                                            {{ $post->categories->first() && $category->id == $post->categories->first()->id ? 'selected' : '' }}>
                                             {{ $category->title }}
                                         </option>
                                     @endforeach

@@ -43,7 +43,7 @@
                                     <a
                                         href="{{ route('categories.view', $post->categories->first()->id) }}">{{ $post->categories->first()->title }}</a>
                                 </div>
-                            </div>
+      
 
                         </div> <!-- s-content__entry-meta -->
 
