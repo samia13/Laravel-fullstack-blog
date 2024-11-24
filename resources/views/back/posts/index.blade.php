@@ -51,10 +51,17 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>
-                                    <div>{{ $post->title }}</div>
+                                    <div> {{ $post->title ?? 'No Title Available' }}</div>
                                     <small>Created {{ date("d M Y - h:m a", strtotime($post->created_at)) }}</small>
                                 </td>
-                                <td>{{ $post->categories->first()->title }}</td>
+                            </td>
+                            <td>{{ $post->categories->first()?->title ?? 'No Category' }}</td>
+                                <td>
+                                    <div>z</div>
+                                    <small>Created {{ date("d M Y - h:m a", strtotime($post->created_at)) }}</small>
+                                </td>
+                                <td>{{ $post->categories->first()?->title ?? 'No Category' }}</td>
+
                                 <td>{{ $post->user->name }}</td>
                                 <td>{{ $post->slug }}</td>
                                 <td class="project-actions text-right">
