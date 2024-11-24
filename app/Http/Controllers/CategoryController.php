@@ -14,7 +14,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('back.categories.index');
+        $categories = Category::all(); // Or fetch specific categories
+        return view('back.categories.index', [
+            'categories' => $categories
+        ]);
     }
 
     /**
