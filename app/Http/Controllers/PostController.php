@@ -71,7 +71,11 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view('back.posts.edit', compact('post'));
+        $categories = Category::all(); // Or fetch specific categories
+        return view('back.posts.edit', [
+            'post' => $post,
+            'categories' => $categories
+        ]);
     }
 
     /**
